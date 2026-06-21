@@ -97,6 +97,7 @@ Uses set dueling and a global policy selector to dynamically choose between LRU-
 * Instructions Per Cycle (IPC)
 * Misses Per Kilo Instructions (MPKI)
 * LLC Hit Rate
+* Geomean
 
 ### Workloads
 
@@ -115,17 +116,39 @@ The use of diverse workloads enables comparison across both memory-intensive and
 
 ---
 
-## Performance Summary
+## Performance Results
 
-Average performance relative to the baseline LRU policy:
+The implemented cache replacement policies were evaluated using ChampSim across multiple benchmark workloads. Performance was measured using Instructions Per Cycle (IPC), Misses Per Kilo Instructions (MPKI), and Last-Level Cache (LLC) hit rate. Geometric mean performance was also computed to compare overall policy effectiveness across the complete benchmark suite.
 
-| Policy | IPC Improvement |
-| ------ | --------------- |
-| Random | -1.40%          |
-| pLRU   | -0.16%          |
-| LFU    | +0.26%          |
-| BIP    | +0.50%          |
-| DIP    | +0.19%          |
+### IPC Comparison
+
+![IPC Results](results/ipc_comparison.jpeg)
+
+IPC was used as the primary metric for evaluating processor throughput. While most replacement policies exhibited workload-dependent behavior, adaptive insertion strategies consistently delivered stronger overall performance than simpler replacement mechanisms.
+
+---
+
+### MPKI Comparison
+
+![MPKI Results](results/mpki_comparison.jpeg)
+
+MPKI (Misses Per Kilo Instructions) measures the frequency of cache misses experienced during execution. Lower MPKI values indicate improved cache utilization and reduced memory access latency. The adaptive insertion policies demonstrated improved resistance to cache pollution and generally achieved lower miss rates across the benchmark suite.
+
+---
+
+### LLC Hit Rate Comparison
+
+![LLC Hit Rate Results](results/hitrate_comparison.jpeg)
+
+LLC hit rate provides insight into how effectively each policy retains useful cache lines. Higher hit rates reduce off-chip memory traffic and improve overall system performance. Policies that better exploit temporal locality consistently achieved stronger cache utilization.
+
+---
+
+### Geometric Mean Performance
+
+![Geometric Mean Results](results/geomean_comparison.jpeg)
+
+To compare overall effectiveness across all workloads, geometric mean performance metrics were computed for each replacement policy. This provides a workload-independent view of policy behavior and highlights the trade-offs between replacement complexity, cache efficiency, and processor performance.
 
 ---
 
@@ -151,13 +174,13 @@ high-performance-llc-policies/
 │   └── dip.cc
 │
 ├── reports/
-│   ├── performance_summary.md
 │   └── project_report.pdf
 │
 ├── results/
 │   ├── ipc_comparison.png
 │   ├── mpki_comparison.png
-│   └── hitrate_comparison.png
+│   |── hitrate_comparison.png
+│   └── geomean_comparison.png
 │
 └── README.md
 ```
