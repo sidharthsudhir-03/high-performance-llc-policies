@@ -139,32 +139,6 @@ Average performance relative to the baseline LRU policy:
 
 ---
 
-## Technologies Used
-
-### Computer Architecture
-
-* Cache Hierarchies
-* Last-Level Cache Design
-* Cache Replacement Policies
-* Adaptive Insertion Policies
-* Memory-System Performance Analysis
-
-### Software Development
-
-* C++
-* STL
-* Data Structures
-* Algorithm Design
-
-### Simulation and Evaluation
-
-* ChampSim
-* Trace-Driven Simulation
-* Performance Modeling
-* Benchmark Analysis
-
----
-
 ## Repository Structure
 
 ```text
